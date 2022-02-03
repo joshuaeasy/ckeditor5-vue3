@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */
 
@@ -15,7 +15,7 @@ export default {
 	render( createElement ) {
 		return createElement( this.tagName );
 	},
-	emits: ['update:modelValue','ready','destroy','focus','blur'],
+	emits: ['update:modelValue'],
 	props: {
 		editor: {
 			type: Function,
