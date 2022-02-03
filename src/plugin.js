@@ -3,21 +3,8 @@
  * For licensing, see LICENSE.md.
  */
 
-import { App, version as vueVersion } from 'vue';
+import { App } from 'vue';
 import CKEditorComponent from './ckeditor.js';
-
-/* istanbul ignore next */
-const version = App ? App.version : vueVersion;
-const [ major ] = version.split( '.' ).map( i => parseInt( i, 10 ) );
-
-/* istanbul ignore if */
-if ( major !== 2 ) {
-	throw new Error(
-		'The CKEditor plugin works only with Vue 2.x. ' +
-		'For more information, please refer to ' +
-		'https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/vuejs-v2.html'
-	);
-}
 
 const CKEditor = {
 	/**
@@ -26,6 +13,14 @@ const CKEditor = {
 	 * @param {App} App The Vue object.
 	 */
 	install( app ) {
+		const version = Number(app.version.split('.')[0]);
+		if (version < 3) {
+			throw new Error(
+				'The CKEditor plugin works only with Vue 3.x. ' +
+				'For more information, please refer to ' +
+				'https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/vuejs-v3.html'
+			);
+		}
 		app.component( 'ckeditor', CKEditorComponent );
 	},
 	component: CKEditorComponent
